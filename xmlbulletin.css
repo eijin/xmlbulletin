@@ -1,0 +1,331 @@
+/*
+* This CSS is smaple code for Xmlbulletine Project
+*
+*   *** this css uses "display:inle-block" so not support IE6,7 ***
+*/
+
+h2 {
+	padding: 0;
+	margin: 0;
+	margin-bottom: 1em;
+	font-size: 1em;
+	font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+	color: #999;
+}
+
+div.nav {
+	padding: 0;
+	margin: 1em;
+}
+
+div.ope {
+	padding: 0.3em;
+	margin-bottom: 3px;
+	background-color: #eee;
+}
+.column .ope {
+	text-align: right;
+}
+.list .ope {
+	text-align: center;
+}
+
+div.pager {
+	padding: 0.3em;
+	margin: 1em;
+	margin-top: 1.5em;
+	border-top: 1px solid #eee;
+	font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+	font-size: 90%;
+}
+
+/* action buttons style */
+div.actions ul {
+	padding: 0;
+	margin: 0;
+	line-height: 1.3em;
+}
+div.actions ul li {
+	display: inline-block;
+	margin:0 0.5em 0 0;
+	list-style-type: none;
+	padding: 0;
+	vertical-align:middle;
+	font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+	font-size: 90%;
+}
+div.actions ul li a:hover {
+	text-decoration: underline;
+}
+div.actions ul:after {
+	content: "";
+	height: 0;
+	display: block;
+	visibility: hidden;
+}
+
+div.actions ul li a.inline {
+	display: inline;
+}
+
+input[type=submit] {
+	font-size: 100%;
+	line-height: 1.5em;
+}
+
+input[type=submit],
+div.actions ul li a,
+td.actions a {
+	display: block;
+	font-weight:normal;
+	padding: 2px 6px;
+	background:#f8f8f8;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));
+	background-image: -moz-linear-gradient(top, #fff, #ddd);
+	color:#666;
+	border:1px solid #ccc;
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+	text-decoration:none;
+	text-shadow: #fff 0px 1px 0px;
+	min-width: 0;
+}
+input[type=submit]:hover,
+div.actions ul li a:hover,
+td.actions a:hover {
+	border:1px solid #666;
+	color: #333;
+}
+
+/** Index **/
+.columns {
+	width: 700px;
+}
+.list {
+	width: 100%;
+}
+
+/** Index Columns **/
+.column {
+	padding-top: 0.5em;
+	padding-bottom: 1em;
+	margin: 1em;
+}
+
+.column dl {
+	line-height: 1.5em;
+	margin: 0;
+	padding: 0;
+	border-top: 1px solid #eee;
+	border-right: 1px solid #eee;
+}
+.column dt {
+	display: block;
+	width: 8.5em;
+	padding-top: 0.2em;
+	padding-left: 1em;
+	vertical-align: top;
+	background-color: #eee;
+	font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+}
+.column dd {
+	display: block;
+	margin-left: 10em;
+	margin-top: -2em;
+	padding: 0.4em;
+	vertical-align: text-bottom;
+	border-bottom: 1px solid #eee;
+	font-family:"ＭＳ Ｐ明朝", "MS PMincho", "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", serif;
+}
+.column dd dl {
+	line-height: 1em;
+	margin: 5px;
+}
+.column dd dt {
+	border: none;
+	padding: 0;
+	vertical-align: top;
+	font-size: 90%;
+	color: #666;
+}
+.column dd dd {
+	margin-left: 4em;
+	margin-top: -1.5em;
+	vertical-align:text-bottom;
+}
+
+/** Index List **/
+table.list {
+	width: auto;
+	line-height: 2em;
+	margin: 0;
+	padding: 0;
+}
+
+table.list th {
+	padding: 3px;
+	margin: 3px;
+	margin-right: 1em;
+	background-color: #eee;
+	font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+}
+
+table.list td {
+	margin: 3px;
+	padding-left: 1em;
+	padding-right: 1em;
+	border-left: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	font-family:"ＭＳ Ｐ明朝", "MS PMincho", "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", serif;
+}
+
+table.list td.ope {
+	margin: 3px;
+	padding-left: 0;
+	padding-right: 0;
+	background-color: #eee;
+	white-space: nowrap;
+}
+
+/** Form **/
+.alert {
+	width: 60%;
+	padding: 0;
+	margin: 1em;
+	border: 1px solid #FC6;
+}
+.alert ul {
+	margin-top: 0.6em;
+	margin-bottom: 0.6em;
+}
+.alert li {
+	list-style: square;
+	color: #C00;
+}
+.alert .note {
+	margin: 1em 2em 1em 2em;
+	font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+}
+
+.form {
+	width: 60%;
+}
+
+.form .input {
+	color: #444;
+}
+.form .input a {
+	font-size: 80%;
+}
+.form .input img {
+	padding: 0;
+	margin: 0;
+}
+.form .input label {
+	float: left;
+	font-size: 90%;
+	width: 17%;
+	margin-left: 2%;
+	margin-right: 5px;
+	margin-top: 0;
+	padding: 3px;
+	padding-left: 5px;
+	border-top: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+	-moz-border-radius: 5px 0 0 0;
+	-khtml-border-radius: 5px 0 0 0;
+	-webkit-border-radius: 5px 0 0 0;
+	border-radius: 5px 0 0 0;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	-khtml-box-sizing: content-box;
+	box-sizing: content-box;
+	white-space:nowrap;
+	font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+}
+.form .input .error-message {
+	margin: 0;
+	padding:0;
+	margin-left: 20%;
+	background-color: #fff;
+	color: #C00;
+}
+.form .input .error-message:before {
+	content: '*';
+}
+.form .input:after {
+	clear: left;
+}
+.form .required label:after {
+	color: #e32;
+	content: '*';
+	display:inline;
+}
+.form .input ul {
+	display: block;
+	margin-left: 22%;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	zoom: 100%;
+}
+.form .input ul li {
+	display: block;
+	list-style-type: none;
+	padding: 0;
+	margin: 0 5px 5px 0;
+}
+.form .input ul.inline li {
+	display: inline-block;
+}
+.form .input ul li label {
+	display: inline-block;
+	margin: 0;
+	margin-right: 3px;
+	padding: 0;
+	border: none;
+	width: auto;
+}
+
+.form ul:after {
+	content: "";
+	height: 0;
+	display: block;
+	visibility: hidden;
+}
+
+.form .input input[type=text],
+.form .input input[type=password],
+.form .input textarea {
+	display: block;
+	margin-top: 10px;
+	margin-bottom: 15px;
+	width: 75%;
+	border: 1px solid #ddd;
+	font-size: 90%;
+	padding: 4px;
+	zoom: 100%;
+}
+.form .input textarea {
+	height: 5em;
+}
+.form .input input.readonly {
+	background-color: #eee;
+}
+.form .input select {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+.form .input fieldset {
+	padding: 0;
+	border: none;
+	line-height: 1.8em;
+}
+.form .input fieldset label {
+	float: none;
+	display: inline-block;
+	border: none;
+	padding: 2px;
+	margin: 3px;
+}
+	
