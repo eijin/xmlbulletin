@@ -43,7 +43,7 @@ rss20.phpを使う→ http://www.example.com/xmlbulletin.php/rss20/
 
 例えば、locale.ja内には以下のような記述があります。
 
-`    “OK” = “実行”  
+     “OK” = “実行”  
      “Cancel” = “キャンセル”  
      “Submit” =	 “登録”  
      “INDEX” =	 “一覧へ”  
@@ -61,7 +61,7 @@ rss20.phpを使う→ http://www.example.com/xmlbulletin.php/rss20/
      “&lt;PREV” = “≪前へ”  
      “NEXT&gt;” =	 “次へ≫”  
      “LAST&gt;|” =	 “最後≫|”  
-     “[%d/%d]” =	 “%dページ/全%dページ”` 
+     “[%d/%d]” =	 “%dページ/全%dページ”
 
 逆に言えば、これらのボタンなどの表示名を変更したり、何かのスタイルを付加したい場合にはプログラムソースの変更は必要なく、locale.jaを変更していただければよいことになります。  
 また、locale.ja の .ja はブラウザの言語環境に対応しています。 具体的には、$_SERVER['HTTP_ACCEPT_LANGUAGE']で取得される文字列の最初の2文字に対応させています。日本語環境ではsafariなどでは ‘ja’ そのものが、FireFoxなどでは ‘ja_JP’ が取得されますので、これらに関して ‘locale.ja’ が採用されます。英語環境なら ‘en’ あるいは ‘en-us’ などが取得されるので、 ‘locale.en’ を作れば、英語表示の変更にも使えます。locale.ja と locale.en の両方を設置しておけば、それぞれの環境で違った表示にすることができます。  
@@ -73,16 +73,16 @@ rss20.phpを使う→ http://www.example.com/xmlbulletin.php/rss20/
 １）ファイルの冒頭に記述  
 以下のコードを必ず冒頭で行ってください。  
 
-`    <?php  
-    include_once(“utility.php”);
-    include_once(“xmlbulletin.class.php”);  
-    $xb = new Xmlbulletin;  
-    ?>`
+    <?php  
+        include_once(“utility.php”);
+        include_once(“xmlbulletin.class.php”);  
+        $xb = new Xmlbulletin;  
+    ?>
 
 ２）タイトルの記述  
 必須というわけではないですが&lt;title&gt;タグに以下のように記述すれば、「拡張クラス」毎に設定したタイトルになります。
 
-`    <title><?php echo $xb->error ? __(‘ERROR’) : __($xb->model->title); ?></title>`
+`<title><?php echo $xb->error ? __(‘ERROR’) : __($xb->model->title); ?></title>`
 
 ３）<head>内に記述
 以下を<head>内に記述することで、デフォルトまたはカスタマイズしたCSSファイルへのlinkを挿入することができます。
@@ -92,13 +92,13 @@ rss20.phpを使う→ http://www.example.com/xmlbulletin.php/rss20/
 ４）掲示板の表示
 掲示板を表示する場所に以下のコードを挿入してください。
 
-`<?php  
-    if($xb->error) {  
-     echo __($xb->error);  
-    } else {  
-    $xb->display();  
-   }  
-?>`
+    <?php  
+        if($xb->error) {  
+             echo __($xb->error);  
+        } else {  
+            $xb->display();  
+       }  
+?>
 
 以上のコード挿入を行ってください。
 xmlbulletineのセットのファイル群をそのPHPファイルと同じディレクトリにおいて、そのPHPファイルをブラウザで呼び出します。「拡張クラス」を作った場合は / (スラッシュ)で区切って指定します（※「起動方法」参照）
@@ -131,7 +131,7 @@ $item_validations	 	アイテムの各ノードのバリデーションを設定
 ページのタイトルとなる文字列を記述します。翻訳機能の対象になっています。もちろん翻訳機能を使わない場合は日本語でそのまま記述しても結構です。
 
 `public $title = "Bulletine Board System";`
-　
+
 
 ####$fore
 
@@ -140,54 +140,52 @@ XMLにはたいていの場合、データ本体となる繰り返しのアイ�
 value側にはXML生成時に設定されるデフォルトの文字列を記述できます。  
 この文字列には、`｛｝`（中カッコ）でくくってPHPの何か値を返すファンクションを含めることができます。例えば`{date(“Y-m-d”)}`とすれば、このXMLの生成時の日付が入ります。  
 
-`public $fore = array(  
-	'bbs' => array(  
-		'title' => 'Bulletine Board System',  
-		'subtitle' => '',  
-		'updated' => '{date("Y-m-d H:i:s")}',  
-		'id' => 'tag:smallmake.com,{date("Y-m-d")},{uniqid()}',  
-		'generator' => 'xmlbulletine'  
-	)  
-);`
-　
+    public $fore = array(  
+        bbs' => array(  
+        'title' => 'Bulletine Board System',  
+        'subtitle' => '',  
+        'updated' => '{date("Y-m-d H:i:s")}',  
+        'id' => 'tag:smallmake.com,{date("Y-m-d")},{uniqid()}',  
+        'generator' => 'xmlbulletine'  
+        )
+    );
+
 
 ####$fore_attributes
 
 `$fore`で記述したノードにXML生成時にXML属性を付加することができます。ここでは構造を表すのには配列を使わず、パス記述でノードを指定します。例えば、ルートであるbbsの下のsubtitleのノードのパスは ‘/bbs/subtitle’ となります。このパスをキーとして、その下に配列をつくり、その配列のkeyで属性名、valueで属性値を指定します。
 
-`public $fore_attributes = array (  
-	'/bbs/subtitle' => array('type' => 'html')  
-);  `
-　
+    public $fore_attributes = array (  
+        '/bbs/subtitle' => array('type' => 'html')  
+    );
 
 ####$item_parent
 
 この後のアイテムノードの親ノードの名前を指定します。親ノードは$foreに記述されていて、それを指していなければなりません。これは必須です。
 
 `public $item_parent = "bbs";`
-　
 
 ####$item
 
 アイテムのノード構造を配列を使って記述します。$foreと同様、配列のkey名がタグに、value側にはアイテムの生成時に設定されるデフォルトの文字列を記述できます。｛｝（中カッコ）での記述は$foreと同様です。
 
-`public $item = array(  
-	'entry' => array (  
-			'title' => '',  
-			'id'		=> 'tag:smallmake.com,{date("Y-m-d")},{uniqid()}',  
-			'published' => '{date("Y-m-d H:i:s")}',  
-			'author' => array(  
-				'name' => '',  
-				'uri'  => '',  
-				'email' => '',  
-				'gender' => '',  
-				'age' => '',  
-				'pc' => ''  
-			),  
-			'content' => ''  
-		)  
-);`
-　
+    public $item = array(  
+        'entry' => array (  
+                'title' => '',  
+                'id'		=> 'tag:smallmake.com,{date("Y-m-d")},{uniqid()}',  
+                'published' => '{date("Y-m-d H:i:s")}',  
+                'author' => array(  
+                'name' => '',  
+                'uri'  => '',  
+                'email' => '',  
+                'gender' => '',  
+                'age' => '',  
+                'pc' => ''  
+            ),  
+        'content' => ''  
+        )
+    );
+
 
 ####$item_attributes
 
@@ -200,10 +198,10 @@ $itemで記述したノードにアイテムの生成時にXML属性を付加す
 「&lt;a href=”http://www.smallmake.com”&gt;このサイト&lt;/a&gt;」  
 と表示されることになります。  
 
-`public $item_attributes = array(  
-    'entry/content' => array('type' => 'html')  
-);`
-　
+    public $item_attributes = array(  
+        'entry/content' => array('type' => 'html')  
+    );
+
 
 ####$item_validations
 
@@ -232,17 +230,17 @@ creditCard	クレジットカード
 ssn	米国社会保障番号	なし	  
 custom	ユーザー指定の
 文字列検証	正規表現	正規表現で検証文字列を指定する。  
-`public $item_validations = array(  
-  'entry/title' =>         array('require'=>'Title is required.'),  
-  'entry/published' =>     array('date'=>array('param'=>'Y-m-d H:i:s',  
-                                'message'=>'Invalid Date format(need Y-m-d H:i:s)')),  
-  'entry/author/name' =>   array('require'=>'Your name is required.'),  
-  'entry/author/uri' =>   array('url'=>'Invalid Site URL format.'),  
-  'entry/author/email' => array('require'=>'Your E-Mail is required.',  
-                                'email'=>'Invalid E-Mail format.'),  
-  'entry/author/gender' =>   array('require'=>'Select your gender.'),  
-  'entry/content' =>      array('require'=>'Comment is required.')  
-);`  
+    public $item_validations = array(  
+        'entry/title' =>         array('require'=>'Title is required.'),  
+        'entry/published' =>     array('date'=>array('param'=>'Y-m-d H:i:s',  
+            'message'=>'Invalid Date format(need Y-m-d H:i:s)')),  
+        'entry/author/name' =>   array('require'=>'Your name is required.'),  
+        'entry/author/uri' =>   array('url'=>'Invalid Site URL format.'),  
+        'entry/author/email' => array('require'=>'Your E-Mail is required.',  
+                        'email'=>'Invalid E-Mail format.'),  
+        'entry/author/gender' =>   array('require'=>'Select your gender.'),  
+        'entry/content' =>      array('require'=>'Comment is required.')  
+    );
 
 ##拡張クラス view の書き方
 
@@ -255,7 +253,7 @@ $sort_mode	descending	カラム一覧/リスト表示の表示順
 $line_per_page	10	リスト表示1ページの件数  
 $column_per_page	5	カラム一覧1ページの件数  
 $item_styles	無設定	フォームの要素のタイプ、ラベル、オプション値など  
-　
+
 
 ####$edit_mode
 
@@ -264,7 +262,7 @@ TRUE : 編集用のボタン等を表示
 FALSE : 編集用のボタン等を隠す  
 
 `public $edit_mode = true;`
-　
+
 
 ####$sort_mode
 
@@ -273,7 +271,6 @@ ascending : アイテムを入力した順に表示（古いものから順に�
 descending : アイテムを入力した順の逆順に表示（新しいものが上）  
 
 `public $sort_mode = "descending";`
-　
 
 `$line_per_page` と `$column_per_page`
 
@@ -281,9 +278,9 @@ descending : アイテムを入力した順の逆順に表示（新しいもの�
 $line_per_page : リスト表示の場合の1ページの件数  
 $column_per_page : カラム一覧表示の場合の1ページの件数  
 
-`public $line_per_page = 10;  
-public $column_per_page = 5;`
-　
+    public $line_per_page = 10;  
+    public $column_per_page = 5;
+
 
 ####$item_styles
 
@@ -295,26 +292,24 @@ label	表示ラベル	HTMLタグの<label>で付ける表示ラベルを記述�
 options	選択項目（配列）	radio, checkbox, selectの場合の選択項目を配列で指定します。この配列のkeyがフォームのvalueとなり、配列のvalueは表示される文字列となります。表示文字列は翻訳機能の対象ですが、翻訳の必要がなければ日本語をそのまま記述しても結構です  
 readonly	readonly属性	少し助長ですが’readonly’=&gt;’readonly’と記述します。設定する場合は必ずこの記述です。また、このフォーム要素にはstyle classとして class=”readonly”が付加されます。例えばCSSで .readonly = { background-color:#ccc;} などとすれば、readonlyのフォーム要素の背景をグレーにできます  
 list	リスト表示指定	カラム一覧はhidden指定以外の項目を全て表示しますが、リスト表示に関してはその対象としたい項目について、この’list’=>trueを指定しなければなりません   
-`public $item_styles = array(  
- 'entry/title' =>     array('type'=>'text',   'label'=>'TITLE', 'list'=>true),  
- 'entry/id' =>      array('type'=>'hidden'),
- 'entry/published' =>   array('type'=>'text',   'label'=>'DATE', 'list'=>true,
-                'readonly'=>'readonly'),  
- 'entry/author/name' =>  array('type'=>'text',   'label'=>'NAME',   'list'=>true),
- 'entry/author/uri' =>  array('type'=>'text',   'label'=>'SITE'),   
- 'entry/author/email' => array('type'=>'text',   'label'=>'E-MAIL'),  
- 'entry/author/gender'  => array('type'=>'radio',  'label'=>'GENDER', 'list'=>true,  
-                'options'=> array('1'=>'Male', '2'=>'Female', '3'=>'Other')),  
- 'entry/author/age'  => array('type'=>'select',  'label'=>'AGE',
+    public $item_styles = array(  
+        'entry/title' =>     array('type'=>'text',   'label'=>'TITLE', 'list'=>true),  
+        'entry/id' =>      array('type'=>'hidden'),
+        'entry/published' =>   array('type'=>'text',   'label'=>'DATE', 'list'=>true,'readonly'=>'readonly'),  
+        'entry/author/name' =>  array('type'=>'text',   'label'=>'NAME',   'list'=>true),
+        'entry/author/uri' =>  array('type'=>'text',   'label'=>'SITE'),   
+        'entry/author/email' => array('type'=>'text',   'label'=>'E-MAIL'),  
+        'entry/author/gender'  => array('type'=>'radio',  'label'=>'GENDER', 'list'=>true,'options'=> array('1'=>'Male', '2'=>'Female', '3'=>'Other')),  
+        'entry/author/age'  => array('type'=>'select',  'label'=>'AGE',
                 'options'=> array('0'=>'--', '10'=>'10´s',  
                 '20'=>'20´s','30'=>'30´s','40'=>'40´s',  
                 '50'=>'50´s','60'=>'60´s','70'=>'70´s',  
                 '80'=>'80´s','90'=>'90´s')),  
- 'entry/author/pc'  => array('type'=>'checkbox',  'label'=>'PC',   'list'=>true,  
+        'entry/author/pc'  => array('type'=>'checkbox',  'label'=>'PC',   'list'=>true,  
                 'options'=> array('Win'=>'Windows', 'Mac'=>'Machintosh',
                 'Lnx'=>'Linux', 'Oth'=>'Others')),  
- 'entry/content' =>   array('type'=>'textarea', 'label'=>'COMMENT')  
-);`
+        'entry/content' =>   array('type'=>'textarea', 'label'=>'COMMENT')  
+    );
 
 
 ##CSS作成情報
