@@ -84,7 +84,7 @@ rss20.phpを使う→ http://www.example.com/xmlbulletin.php/rss20/
 
 `<title><?php echo $xb->error ? __(‘ERROR’) : __($xb->model->title); ?></title>`
 
-３）<head>内に記述
+３）&lt;head&gt;内に記述
 以下を<head>内に記述することで、デフォルトまたはカスタマイズしたCSSファイルへのlinkを挿入することができます。
 
 `<?php echo $xb->html_head; ?>`
@@ -98,9 +98,9 @@ rss20.phpを使う→ http://www.example.com/xmlbulletin.php/rss20/
         } else {  
             $xb->display();  
        }  
-?>
+    ?>
 
-以上のコード挿入を行ってください。
+以上のコード挿入を行ってください。  
 xmlbulletineのセットのファイル群をそのPHPファイルと同じディレクトリにおいて、そのPHPファイルをブラウザで呼び出します。「拡張クラス」を作った場合は / (スラッシュ)で区切って指定します（※「起動方法」参照）
 
 ##「拡張クラス」の作り方
@@ -191,11 +191,11 @@ value側にはXML生成時に設定されるデフォルトの文字列を記述
 
 $itemで記述したノードにアイテムの生成時にXML属性を付加することができます。ここでは構造を表すのには$fore_attributesと同様に配列を使わず、パス記述でノードを指定します。  
 “type”=”html”属性はこのシステムでは重要な役割をします。”type”=”html”属性のノードは、カラム一覧やリスト表示の時にHTML特殊文字をエスケープしないように出力されます。例えば、新規や編集フォームで  
-「&lt;a href=”http://www.smallmake.com”&gt;このサイト&lt;/a&gt;」  
+`<a href=”http://www.smallmake.com”>このサイト</a>`  
 と入力して登録すると、カラム一覧やリストでの表示は”type”=”html”属性のある項目の場合  
-「このサイト」  
+「この[サイト](http://www.smallmake.com)」  
 と表示され、この属性のないものはそのまま   
-「&lt;a href=”http://www.smallmake.com”&gt;このサイト&lt;/a&gt;」  
+「&lt;a href=”http://www.smallmake.com” &gt; このサイト&lt;/a &gt;」
 と表示されることになります。  
 
     public $item_attributes = array(  
@@ -216,7 +216,7 @@ email	メールアドレス
 の書式	“checkDNS”	”checkDNS”を指定した場合、ドメイン名をネットワークでチェック。  
 zip	郵便番号の書式	“jp”, “us”	jp: 日本3桁-4桁、 us: 米国5桁-4桁  
 phone	電話番号の書式	“jp”, “us”	jp:日本[2〜5桁]-[1〜5桁]-[3〜5桁]、 us:3桁-3桁-4桁  
-date	日付書式	フォーマット	フォーマットにはPHPのdate関数のフォーマット文字列を使用。フォーマット文字列については http://jp2.php.net/manual/ja/function.date.phpを参照。指定がない場合、”Y-m-d” とする。”Y-m-d”は例えば “2010-03-14”のような形式を表す。  
+date	日付書式	フォーマット	フォーマットにはPHPのdate関数のフォーマット文字列を使用。フォーマット文字列については http://jp2.php.net/manual/ja/function.date.php を参照。指定がない場合、”Y-m-d” とする。”Y-m-d”は例えば “2010-03-14”のような形式を表す。  
 max	最大数値	数値	最大値の数字を指定。それより大きい数字が入力されるとエラーとする。  
 min	最小数値	数値	最小値の数字を指定。それより少ない数字が入力されるとエラーとする。  
 maxLength	最大文字数	数値	最大文字数を指定。それより多い文字数が入力されるとエラーとする。  
@@ -229,7 +229,8 @@ creditCard	クレジットカード
 ナンバー書式	なし	  
 ssn	米国社会保障番号	なし	  
 custom	ユーザー指定の
-文字列検証	正規表現	正規表現で検証文字列を指定する。  
+文字列検証	正規表現	正規表現で検証文字列を指定する。
+
     public $item_validations = array(  
         'entry/title' =>         array('require'=>'Title is required.'),  
         'entry/published' =>     array('date'=>array('param'=>'Y-m-d H:i:s',  
@@ -292,6 +293,7 @@ label	表示ラベル	HTMLタグの<label>で付ける表示ラベルを記述�
 options	選択項目（配列）	radio, checkbox, selectの場合の選択項目を配列で指定します。この配列のkeyがフォームのvalueとなり、配列のvalueは表示される文字列となります。表示文字列は翻訳機能の対象ですが、翻訳の必要がなければ日本語をそのまま記述しても結構です  
 readonly	readonly属性	少し助長ですが’readonly’=&gt;’readonly’と記述します。設定する場合は必ずこの記述です。また、このフォーム要素にはstyle classとして class=”readonly”が付加されます。例えばCSSで .readonly = { background-color:#ccc;} などとすれば、readonlyのフォーム要素の背景をグレーにできます  
 list	リスト表示指定	カラム一覧はhidden指定以外の項目を全て表示しますが、リスト表示に関してはその対象としたい項目について、この’list’=>trueを指定しなければなりません   
+
     public $item_styles = array(  
         'entry/title' =>     array('type'=>'text',   'label'=>'TITLE', 'list'=>true),  
         'entry/id' =>      array('type'=>'hidden'),
