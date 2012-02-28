@@ -126,14 +126,14 @@ $item_attributes	 	アイテムの構造の中でノード属性を付けるも�
 $item_validations	 	アイテムの各ノードのバリデーションを設定  
 　
 
-`$title`
+####$title
 
 ページのタイトルとなる文字列を記述します。翻訳機能の対象になっています。もちろん翻訳機能を使わない場合は日本語でそのまま記述しても結構です。
 
 `public $title = "Bulletine Board System";`
 　
 
-`$fore`
+####$fore
 
 XMLにはたいていの場合、データ本体となる繰り返しのアイテムの前に親または同レベルのノードとしてタイトルなどを記述します。その部分の構造を配列で記述します。配列は階層構造になっても大丈夫です。その構造がそのままXMLの構造として反映されます。これは必須です。  
 配列のkey名がタグに、valueがそのタグの内容になります。  
@@ -151,7 +151,7 @@ value側にはXML生成時に設定されるデフォルトの文字列を記述
 );`
 　
 
-`$fore_attributes`
+####$fore_attributes
 
 `$fore`で記述したノードにXML生成時にXML属性を付加することができます。ここでは構造を表すのには配列を使わず、パス記述でノードを指定します。例えば、ルートであるbbsの下のsubtitleのノードのパスは ‘/bbs/subtitle’ となります。このパスをキーとして、その下に配列をつくり、その配列のkeyで属性名、valueで属性値を指定します。
 
@@ -160,14 +160,14 @@ value側にはXML生成時に設定されるデフォルトの文字列を記述
 );  `
 　
 
-`$item_parent`
+####$item_parent
 
 この後のアイテムノードの親ノードの名前を指定します。親ノードは$foreに記述されていて、それを指していなければなりません。これは必須です。
 
 `public $item_parent = "bbs";`
 　
 
-`$item`
+####$item
 
 アイテムのノード構造を配列を使って記述します。$foreと同様、配列のkey名がタグに、value側にはアイテムの生成時に設定されるデフォルトの文字列を記述できます。｛｝（中カッコ）での記述は$foreと同様です。
 
@@ -189,7 +189,7 @@ value側にはXML生成時に設定されるデフォルトの文字列を記述
 );`
 　
 
-`$item_attributes`
+####$item_attributes
 
 $itemで記述したノードにアイテムの生成時にXML属性を付加することができます。ここでは構造を表すのには$fore_attributesと同様に配列を使わず、パス記述でノードを指定します。  
 “type”=”html”属性はこのシステムでは重要な役割をします。”type”=”html”属性のノードは、カラム一覧やリスト表示の時にHTML特殊文字をエスケープしないように出力されます。例えば、新規や編集フォームで  
@@ -205,7 +205,7 @@ $itemで記述したノードにアイテムの生成時にXML属性を付加す
 );`
 　
 
-`$item_validations`
+####$item_validations
 
 バリデートしたいノードをパスで指定します。バリデートしたいものだけ記述すればよいです。そのノードパスをkeyとする配列を作り、その下にさらに配列を作り、そのkeyとしてバリデートしたいルールを、そしてその　valueにバリデーションの結果エラーとなったな場合のメッセージを記述します。ただし、ルールに何らかの条件値を設定しなければならない場合（例えば最大値や最小値の比較バリデーション）は、valueをさらに配列にして’param’=>でその条件値、’message’=>でエラーメッセージを指定します。つまり以下の2パターンがあるということです。  
 １） ’ノードパス’ => array(‘ルール’=>’エラーメッセージ’);  
@@ -257,7 +257,7 @@ $column_per_page	5	カラム一覧1ページの件数
 $item_styles	無設定	フォームの要素のタイプ、ラベル、オプション値など  
 　
 
-`$edit_mode`
+####$edit_mode
 
 これは編集用のボタンを表示するかどうかの指定です。閲覧だけする人たちのために用意したページでは「新規」「編集」「削除」といったボタンは不要です。そのような場合、FALSEにすると表示しません。  
 TRUE : 編集用のボタン等を表示  
@@ -266,7 +266,7 @@ FALSE : 編集用のボタン等を隠す
 `public $edit_mode = true;`
 　
 
-`$sort_mode`
+####$sort_mode
 
 カラム一覧やリスト表示の表示順の指定です。  
 ascending : アイテムを入力した順に表示（古いものから順に表示）  
@@ -285,7 +285,7 @@ $column_per_page : カラム一覧表示の場合の1ページの件数
 public $column_per_page = 5;`
 　
 
-`$item_styles`
+####$item_styles
 
 フォームの要素のタイプ、ラベル、オプション値の一覧などの指定ができます。配列のkeyでノードパスで指定し、そのvalueを配列にして、keyで設定内容、valueで設定値を記述します。
 
@@ -296,52 +296,33 @@ options	選択項目（配列）	radio, checkbox, selectの場合の選択項目
 readonly	readonly属性	少し助長ですが’readonly’=&gt;’readonly’と記述します。設定する場合は必ずこの記述です。また、このフォーム要素にはstyle classとして class=”readonly”が付加されます。例えばCSSで .readonly = { background-color:#ccc;} などとすれば、readonlyのフォーム要素の背景をグレーにできます  
 list	リスト表示指定	カラム一覧はhidden指定以外の項目を全て表示しますが、リスト表示に関してはその対象としたい項目について、この’list’=>trueを指定しなければなりません   
 `public $item_styles = array(  
-
  'entry/title' =>     array('type'=>'text',   'label'=>'TITLE', 'list'=>true),  
-
  'entry/id' =>      array('type'=>'hidden'),
-
  'entry/published' =>   array('type'=>'text',   'label'=>'DATE', 'list'=>true,
-
                 'readonly'=>'readonly'),  
-
  'entry/author/name' =>  array('type'=>'text',   'label'=>'NAME',   'list'=>true),
-
  'entry/author/uri' =>  array('type'=>'text',   'label'=>'SITE'),   
-
  'entry/author/email' => array('type'=>'text',   'label'=>'E-MAIL'),  
-
  'entry/author/gender'  => array('type'=>'radio',  'label'=>'GENDER', 'list'=>true,  
-
                 'options'=> array('1'=>'Male', '2'=>'Female', '3'=>'Other')),  
-
  'entry/author/age'  => array('type'=>'select',  'label'=>'AGE',
-  
                 'options'=> array('0'=>'--', '10'=>'10´s',  
-
                 '20'=>'20´s','30'=>'30´s','40'=>'40´s',  
-
                 '50'=>'50´s','60'=>'60´s','70'=>'70´s',  
-
                 '80'=>'80´s','90'=>'90´s')),  
-
  'entry/author/pc'  => array('type'=>'checkbox',  'label'=>'PC',   'list'=>true,  
-
                 'options'=> array('Win'=>'Windows', 'Mac'=>'Machintosh',
-
                 'Lnx'=>'Linux', 'Oth'=>'Others')),  
-
  'entry/content' =>   array('type'=>'textarea', 'label'=>'COMMENT')  
-
 );`
 
 
 ##CSS作成情報
 
 CSSに関しては、「拡張クラス」のファイル名と同じファイル名のCSSを設置すればそちらを優先します。例えば、「拡張クラス」bbs.phpを使う場合、bbs.cssというファイルを作って設置すれば、これを優先します。  
-生成されるHTMLのスタイルclass名には一定の規則がありますので、それを元にCSSを作れば自由にレイアウトをカスタマイズできると思います。スタイルclass名の生成ルールを以下のようになります。 > は 上下関係、| は並列設定です。  
-カラム一覧： columns &lt; column  
-リスト表示： columns &lt; table.list  
-ボタン表示： actions &lt; ul &lt; li &lt; a  
+生成されるHTMLのスタイルclass名には一定の規則がありますので、それを元にCSSを作れば自由にレイアウトをカスタマイズできると思います。スタイルclass名の生成ルールを以下のようになります。 &gt; は 上下関係、| は並列設定です。  
+カラム一覧： columns &gt; column  
+リスト表示： columns &gt; table.list  
+ボタン表示： actions &gt; ul &gt; li &gt; a  
 フォーム表示： input | text,radio,checkbox,select,textarea | [各アイテムタグ名]  
 フォーム表示の時、各フォーム要素を囲む divの class名に要素に応じて   text,radio,checkbox,select,textarea およびアイテムのタグ名そのものを付けています。CSSでタグ毎の設定することで細かな設定ができるのではないかと思います。  
