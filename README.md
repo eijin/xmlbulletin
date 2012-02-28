@@ -43,25 +43,25 @@ rss20.phpを使う→ http://www.example.com/xmlbulletin.php/rss20/
 
 例えば、locale.ja内には以下のような記述があります。
 
-`“OK” = “実行”  
-“Cancel” = “キャンセル”  
-“Submit” =	 “登録”  
-“INDEX” =	 “一覧へ”  
-“Are you sure?” = “続行しますか？”  
-“ERROR” = “エラー”  
-“EDIT” = “編集”  
-“VIEW” = “詳細”  
-“DELETE” = “削除”  
-“UP” = “△”  
-“DOWN” = “▽”  
-“ADD” = “新規”  
-“LIST MODE” =	 “リスト表示”  
-“COLUMN MODE” =	 “カラム一覧表示”  
-“|&lt;TOP” = “|≪トップ”  
-“&lt;PREV” = “≪前へ”  
-“NEXT&gt;” =	 “次へ≫”  
-“LAST&gt;|” =	 “最後≫|”  
-“[%d/%d]” =	 “%dページ/全%dページ”` 
+`    “OK” = “実行”  
+     “Cancel” = “キャンセル”  
+     “Submit” =	 “登録”  
+     “INDEX” =	 “一覧へ”  
+     “Are you sure?” = “続行しますか？”  
+     “ERROR” = “エラー”  
+     “EDIT” = “編集”  
+     “VIEW” = “詳細”  
+     “DELETE” = “削除”  
+     “UP” = “△”  
+     “DOWN” = “▽”  
+     “ADD” = “新規”  
+     “LIST MODE” =	 “リスト表示”  
+     “COLUMN MODE” =	 “カラム一覧表示”  
+     “|&lt;TOP” = “|≪トップ”  
+     “&lt;PREV” = “≪前へ”  
+     “NEXT&gt;” =	 “次へ≫”  
+     “LAST&gt;|” =	 “最後≫|”  
+     “[%d/%d]” =	 “%dページ/全%dページ”` 
 
 逆に言えば、これらのボタンなどの表示名を変更したり、何かのスタイルを付加したい場合にはプログラムソースの変更は必要なく、locale.jaを変更していただければよいことになります。  
 また、locale.ja の .ja はブラウザの言語環境に対応しています。 具体的には、$_SERVER['HTTP_ACCEPT_LANGUAGE']で取得される文字列の最初の2文字に対応させています。日本語環境ではsafariなどでは ‘ja’ そのものが、FireFoxなどでは ‘ja_JP’ が取得されますので、これらに関して ‘locale.ja’ が採用されます。英語環境なら ‘en’ あるいは ‘en-us’ などが取得されるので、 ‘locale.en’ を作れば、英語表示の変更にも使えます。locale.ja と locale.en の両方を設置しておけば、それぞれの環境で違った表示にすることができます。  
